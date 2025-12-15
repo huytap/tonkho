@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ Thống Tính Toán Tồn Kho Giấy</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="styles.css?v=002">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏭 Hệ Thống Tính Toán Tồn Kho Giấy</h1>
+            <p>Quản lý và tính toán số lượng giấy cần dùng cho đơn hàng - Chạy hoàn toàn trên trình duyệt</p>
+        </div>
+
+        <div class="upload-section">
+            <h3 style="margin-bottom: 20px; color: #333;">📁 Tải lên file Excel</h3>
+            <div class="upload-grid">
+                <div class="upload-box" onclick="document.getElementById('inventoryFile').click()">
+                    <input type="file" id="inventoryFile" accept=".xlsx,.xls">
+                    <span class="upload-label">📦 File Tồn Kho</span>
+                    <p style="color: #666; font-size: 0.9em;">Click để chọn file</p>
+                    <div id="inventoryFileName" class="file-name"></div>
+                </div>
+                <div class="upload-box" onclick="document.getElementById('orderFile').click()">
+                    <input type="file" id="orderFile" accept=".xlsx,.xls">
+                    <span class="upload-label">📋 File Đơn Hàng</span>
+                    <p style="color: #666; font-size: 0.9em;">Click để chọn file</p>
+                    <div id="orderFileName" class="file-name"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-section" id="filterSection" style="display: none;">
+            <div class="filter-grid">
+                <div class="filter-group">
+                    <label>Khách hàng:</label>
+                    <select id="customerFilter">
+                        <option value="">-- Tất cả --</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Định lượng (GSM):</label>
+                    <input type="text" id="gsmFilter" placeholder="VD: 160, 180, 200">
+                </div>
+
+                <div class="filter-group">
+                    <label>Loại đơn hàng:</label>
+                    <select id="orderTypeFilter">
+                        <option value="all">Tất cả</option>
+                        <option value="approved">Đã duyệt</option>
+                        <option value="forecast">Forecast</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Đảo chiều:</label>
+                    <select id="locationFilter">
+                        <option value="NM1">Có</option>
+                        <option value="NM2">Không</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="calc-button" id="calculateBtn" disabled>
+                📊 Tính Toán
+            </button>
+
+            <button class="export-button" id="exportBtn" style="display: none;">
+                📥 Export Excel
+            </button>
+        </div>
+
+        <div class="content" id="results" style="display: none;"></div>
+    </div>
+    <!-- ExcelJS Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js"></script>
+
+    <!-- SheetJS vẫn giữ để đọc file -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="script.js?v=007"></script>
+</body>
+
+</html>
